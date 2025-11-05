@@ -3,7 +3,7 @@ import Tasks from "./components/Tasks"
 import AddTask from "./components/AddTask"
 import './App.css'
 import { useState } from "react"
-
+import {v4} from 'uuid'
 
 
 function App() {
@@ -46,11 +46,21 @@ function deleteTaskClick(taskId){
     setTasks(newTasks)
 }
 
+function onTaskSubmit(title,description){
+  const newTask = {
+    id: v4(),
+    title: title,
+    description:description,
+    isCompleted:false,
+  }
+  setTasks([...tasks , newTask])
+}
+
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
-      <div className="w-[500px]">
+      <div className="w-[500px] space-y-4">
         <h1 className="text-3xl text-slate-100 font-bold text-center">Gerenciador de tarefas</h1>
-        <AddTask/>
+        <AddTask onTaskSubmit={onTaskSubmit}/>
         <Tasks tasks={tasks} onTaskClick={onTaskClick} deleteTaskClick={deleteTaskClick}/>
       </div>   
     </div>
