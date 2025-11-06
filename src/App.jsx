@@ -3,6 +3,7 @@ import AddTask from "./components/AddTask";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { v4 } from "uuid";
+import Title from "./components/Title";
 
 function App() {
   const [tasks, setTasks] = useState(
@@ -14,7 +15,7 @@ function App() {
   }, [tasks]);
 
   useEffect(() => {
-    //Chamar api
+    /*//Chamar api
     const fetchTasks = async () => {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/todos?_limit=10",
@@ -32,9 +33,9 @@ function App() {
       //Se eu quiser posso pegar uma api para pegar as tarefas
       //setTasks(data)
     }
-    fetchTasks()
+    fetchTasks()  */
 
-  }, []);
+  }, []); 
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
@@ -68,9 +69,9 @@ function App() {
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
       <div className="w-[500px] space-y-4">
-        <h1 className="text-3xl text-slate-100 font-bold text-center">
+        <Title>
           Gerenciador de tarefas
-        </h1>
+        </Title>
         <AddTask onTaskSubmit={onTaskSubmit} />
         <Tasks
           tasks={tasks}
